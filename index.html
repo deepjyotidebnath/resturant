@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spice Route Kitchen — Menu, Reservations & Orders</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav><b id="brand"></b><a href="#menu">Menu</a><a href="#reserve">Reserve</a><a href="#gallery">Gallery</a><a href="#visit">Visit</a><a href="#qr-sec">QR</a></nav>
+
+<section class="hero">
+  <span class="badge" id="tableBadge" style="display:none"></span>
+  <h1 id="hName"></h1>
+  <p id="tag"></p>
+  <a class="btn alt" href="#menu">View Menu</a> <a class="btn" href="#reserve">Book a Table</a>
+</section>
+
+<section id="menu">
+  <h2>Our Menu</h2>
+  <p class="sub">Tap + to build an order, then send it to us on WhatsApp.</p>
+  <div class="tabs" id="tabs"></div>
+  <div class="grid" id="items"></div>
+</section>
+
+<section id="reserve">
+  <h2>Reserve a Table</h2>
+  <p class="sub">Choose a slot and we'll confirm on WhatsApp.</p>
+  <form id="rf">
+    <div class="row"><label>Name<input name="name" required></label><label>Phone<input name="phone" type="tel" required pattern="[0-9+ ]{8,15}"></label></div>
+    <div class="row"><label>Date<input name="date" type="date" required></label><label>Time<select name="time" required></select></label></div>
+    <div class="row"><label>Guests<select name="guests"></select></label><label>Seating<select name="seat"><option>Indoor</option><option>Outdoor</option><option>Family area</option></select></label></div>
+    <label>Special request<textarea name="note" rows="2" placeholder="Birthday, high chair, allergies…"></textarea></label>
+    <button class="btn wa" type="submit">Reserve via WhatsApp</button>
+    <div class="ok" id="rok"></div>
+  </form>
+</section>
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <p class="sub">A taste of the experience. Swap the files in <code>assets/images/</code> with your own photos.</p>
+  <div class="gallery" id="gal"></div>
+</section>
+
+<section id="visit">
+  <h2>Visit Us</h2>
+  <div class="two">
+    <div class="box"><h3>Find us</h3><p id="addr"></p>
+      <a class="btn" id="mapBtn" target="_blank" rel="noopener">Open in Google Maps</a>
+      <p><a class="btn ghost" id="callBtn">Call us</a></p></div>
+    <div class="box"><h3>Opening hours</h3><table id="hours"></table></div>
+  </div>
+</section>
+
+<section id="qr-sec">
+  <h2>Table QR Codes</h2>
+  <p class="sub">Print one per table. Guests scan to open this menu with their table number pre-filled.</p>
+  <div class="box" style="text-align:center">
+    <label style="max-width:200px;margin:0 auto 12px">Table number<input id="tnum" type="number" min="1" value="1"></label>
+    <div id="qr"></div>
+    <p class="sans" id="qrUrl" style="font-size:12px;color:var(--mute);word-break:break-all"></p>
+    <button class="btn" id="dl">Download PNG</button> <button class="btn ghost" onclick="window.print()">Print</button>
+  </div>
+</section>
+
+<footer id="foot"></footer>
+
+<div class="cart" id="cart"><span id="cartTxt"></span><button class="btn wa" id="cartBtn">Review order</button></div>
+
+<dialog id="dlg">
+  <h3>Your order</h3>
+  <div id="lines" style="margin:12px 0"></div>
+  <div class="line"><b>Total</b><b id="tot"></b></div>
+  <label style="margin-top:10px">Your name<input id="oname"></label>
+  <label style="margin-top:10px">Type<select id="otype"><option>Dine-in</option><option>Takeaway</option><option>Delivery</option></select></label>
+  <label style="margin-top:10px">Notes<textarea id="onote" rows="2" placeholder="Less spicy, no onion…"></textarea></label>
+  <div style="display:flex;gap:8px;margin-top:14px"><button class="btn ghost" onclick="dlg.close()">Close</button><button class="btn wa" id="send" style="flex:1">Send on WhatsApp</button></div>
+</dialog>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
